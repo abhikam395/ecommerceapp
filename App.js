@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import SignInScreen from './src/screens/SignInScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
-import ForgetPasswordScreen from './src/screens/ForgetPasswordScree';
+import ForgetPasswordScreen from './src/screens/ForgetPasswordScreen';
 
 const Stack = createStackNavigator();
 
