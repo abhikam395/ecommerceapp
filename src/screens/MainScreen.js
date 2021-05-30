@@ -17,8 +17,10 @@ const Tab = createBottomTabNavigator();
 
 export default function MainScreen(){
     return (
-        <Tab.Navigator 
-            initialRouteName="Home"
+        <Tab.Navigator
+            initialRouteName="Shop"
+            shifting={true}
+            activeColor='red'
             screenOptions={({ route }) => ({
                 tabBarIcon: ({ focused, color, size }) => {
                     let iconName, colorName;
@@ -61,8 +63,8 @@ export default function MainScreen(){
                     padding: 10
                 }
               }}>
-            <Tab.Screen name="Home" component={HomeScreen}/>
-            <Tab.Screen name="Shop" component={ShopScreen}/>
+            <Tab.Screen name="Home" component={HomeScreen} />
+            <Tab.Screen name="Shop" component={ShopScreen} />
             <Tab.Screen name="Bag" component={BagScreen}/>
             <Tab.Screen name="Favorite" component={FavoriteScreen}/>
             <Tab.Screen name="Profile" component={ProfileScreen}/>
