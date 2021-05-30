@@ -22,7 +22,7 @@ export default class SignInScreen extends Component{
 
     constructor(){
         super();
-        this.signUp = this.signUp.bind(this);
+        this.signIn = this.signIn.bind(this);
         this.navToSignUpScreen = this.navToSignUpScreen.bind(this);
         this.navToForgetPasswordScreen = this.navToForgetPasswordScreen.bind(this);
     }
@@ -37,8 +37,9 @@ export default class SignInScreen extends Component{
         navigation.navigate('ForgetPassword')
     }
 
-    signUp(){
-        console.log('signUp')
+    signIn(){
+        let {navigation} = this.props;
+        navigation.navigate('Main');
     }
 
     render(){
@@ -79,7 +80,7 @@ export default class SignInScreen extends Component{
                 </TouchableOpacity>
                 <TouchableOpacity 
                     style={styles.signUpButton}
-                    onPress={this.signUp}>
+                    onPress={this.signIn}>
                     <Text style={styles.signUpButtonText}>LOGIN</Text>
                 </TouchableOpacity>
                 <View style={styles.otherSignUpContainer}>

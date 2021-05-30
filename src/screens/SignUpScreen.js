@@ -32,7 +32,8 @@ export default class SignUpScreen extends Component{
     }
 
     signUp(){
-        console.log('signup')
+        let {navigation} = this.props;
+        navigation.navigate('Main');
     }
 
     render(){
