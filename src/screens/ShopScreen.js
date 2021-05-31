@@ -9,6 +9,8 @@ import { TouchableOpacity, View } from 'react-native';
 const ShopStack = createStackNavigator();
 
 export default class ShopScreen extends Component{
+
+
     render(){
         return (
             <ShopStack.Navigator 

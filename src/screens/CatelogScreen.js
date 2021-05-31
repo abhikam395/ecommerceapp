@@ -4,6 +4,8 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import ProductItemComponent from '../components/ProductItemComponent';
 import ProductColumnItemComponent from '../components/ProductColumnItem';
+import SortByBottomSheetComponent from '../components/SortByBottomSheetComponent';
+import { createRef } from 'react/cjs/react.production.min';
 
 const DATA = [
     {
@@ -44,25 +46,23 @@ const DATA = [
     },
   ];
 
-const Item = ({ title }) => (
-    <TouchableOpacity 
-        style={styles.chipItem}
-        activeOpacity={.5}>
-      <Text style={styles.chipTitle}>{title}</Text>
-    </TouchableOpacity>
-);
-
 export default class CatelogScreen extends Component{
 
     constructor(){
         super();
         this.state = {
-            listGrid: false
+            listGrid: false,
         }
+        this.bottomSheet = createRef();
         this.changeListType = this.changeListType.bind(this);
+        this.toggerBottomSheet = this.toggerBottomSheet.bind(this);
         this.renderChipItem = this.renderChipItem.bind(this);
         this.renderProductItem = this.renderProductItem.bind(this);
         this.renderProductColumnItem = this.renderProductColumnItem.bind(this);
+    }
+
+    componentDidMount(){
+        this.bottomSheet.current.open();
     }
 
     changeListType(){
@@ -70,8 +70,18 @@ export default class CatelogScreen extends Component{
         this.setState({listGrid: !listGrid})
     }
 
+    toggerBottomSheet(){
+        this.bottomSheet.current.open();
+    }
+
     renderChipItem({item}){
-        return <Item title={item.title} />;
+        return  (
+            <TouchableOpacity 
+                style={styles.chipItem}
+                activeOpacity={.5}>
+                <Text style={styles.chipTitle}>{item.title}</Text>
+            </TouchableOpacity>
+        )
     }
 
     renderProductItem({item}){
@@ -87,6 +97,7 @@ export default class CatelogScreen extends Component{
 
         return (
             <View style={styles.container}>
+                <SortByBottomSheetComponent ref={this.bottomSheet}/>
                 <View style={styles.headerContainer}>
                     <FlatList
                         style={styles.chiplist}
@@ -101,10 +112,12 @@ export default class CatelogScreen extends Component{
                             <MaterialIcons name="filter-list" size={24} color="black"/>
                             <Text>Filters</Text>
                         </View>
-                        <View style={styles.priceContainer}>
+                        <TouchableOpacity 
+                            style={styles.priceContainer} 
+                            onPress={this.toggerBottomSheet}>
                             <MaterialIcons name="swap-vert" size={24} color="black"/>
                             <Text>Price: lowest to high</Text>
-                        </View>
+                        </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.listIcon}
                             onPress={this.changeListType}>
@@ -153,7 +166,6 @@ export default class CatelogScreen extends Component{
                         }
                     />
                 )}
-
             </View>
         )
     }
@@ -209,5 +221,5 @@ const styles = StyleSheet.create({
     headerContainer: {
         backgroundColor: 'white',
         elevation: 20
-    }
+    },
 })
