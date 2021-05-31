@@ -6,7 +6,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 const imageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA_djpm0QdOAgvKxQhB3EZuT6JPHn1FcSDaw&usqp=CAU';
 
-export default class SaleItemComponent extends Component{
+export default class ProductColumnItemComponent extends Component{
 
     constructor(){
         super();
@@ -34,34 +34,34 @@ export default class SaleItemComponent extends Component{
             <View style={styles.container}>
                 <View style={styles.imageContainer}>
                     <Image source={{uri: imageUrl}} style={styles.image}/>
-                    <TouchableOpacity 
-                        style={styles.favoriteButton} 
-                        onPress={this.addToFavorite}>
-                        <MaterialIcons name={icon} size={22} color={favorite ? 'red' : 'grey'}/>
-                    </TouchableOpacity>
-                    <View style={styles.discountContainer}>
-                        <Text style={styles.discount}>-20%</Text>
+                </View>
+                <View style={styles.column}>
+                    <Text style={styles.title}>Evening Dress</Text>
+                    <Text style={styles.seller}>Dorothy Perkins</Text>
+                    <View style={styles.ratingContainer}>
+                        <Rating
+                            type='star'
+                            ratingCount={5}
+                            imageSize={16}
+                            readonly
+                            jumpValue={1}
+                            fractions={1}
+                            startingValue={3}
+                            style={styles.rating}
+                        />
+                        <Text style={styles.ratingCount}>(10)</Text>
+                    </View>
+                    <View style={styles.priceContainer}>
+                        <Text style={styles.previousPrice}>15$</Text>
+                        <Text style={styles.newPrice}>12$</Text>
                     </View>
                 </View>
-                <View style={styles.ratingContainer}>
-                    <Rating
-                        type='star'
-                        ratingCount={5}
-                        imageSize={16}
-                        readonly
-                        jumpValue={1}
-                        fractions={1}
-                        startingValue={3}
-                        style={styles.rating}
-                    />
-                    <Text style={styles.ratingCount}>(10)</Text>
-                </View>
-                <Text style={styles.seller}>Dorothy Perkins</Text>
-                <Text style={styles.title}>Evening Dress</Text>
-                <View style={styles.priceContainer}>
-                    <Text style={styles.previousPrice}>15$</Text>
-                    <Text style={styles.newPrice}>12$</Text>
-                </View>
+                <TouchableOpacity 
+                    style={styles.favoriteButton} 
+                    onPress={this.addToFavorite}
+                    activeOpacity={.5}>
+                    <MaterialIcons name={icon} size={20} color={favorite ? 'red' : 'grey'}/>
+                </TouchableOpacity>
             </View>
         )
     }
@@ -69,28 +69,37 @@ export default class SaleItemComponent extends Component{
 
 const styles = StyleSheet.create({
     container: {
-        width: 180,
-        height: 360,
+        height: 120,
         borderRadius: 10,
+        flex: 1,
+        flexDirection: 'row',
+        backgroundColor: 'white',
+        elevation: 3,
+        marginHorizontal: 10
     },
     imageContainer: {
-        height: 250,
+        width: 120,
     },
     image: {
         height: '100%',
         borderRadius: 10
     },
+    column: {
+        flexDirection: 'column',
+        paddingLeft: 15
+    },
     favoriteButton: {
-        height: 46,
-        width: 46,
+        height: 36,
+        width: 36,
         elevation: 5,
         backgroundColor: 'white',
-        borderRadius: 23,
+        borderRadius: 18,
         position: 'absolute',
-        bottom: -25,
+        bottom: -15,
         right: 0,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        zIndex: 10
     },
     discountContainer: {
         backgroundColor: 'red',

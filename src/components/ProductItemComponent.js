@@ -6,7 +6,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 const imageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA_djpm0QdOAgvKxQhB3EZuT6JPHn1FcSDaw&usqp=CAU';
 
-export default class SaleItemComponent extends Component{
+export default class ProductItemComponent extends Component{
 
     constructor(){
         super();
@@ -44,24 +44,24 @@ export default class SaleItemComponent extends Component{
                     </View>
                 </View>
                 <View style={styles.ratingContainer}>
-                    <Rating
-                        type='star'
-                        ratingCount={5}
-                        imageSize={16}
-                        readonly
-                        jumpValue={1}
-                        fractions={1}
-                        startingValue={3}
-                        style={styles.rating}
-                    />
-                    <Text style={styles.ratingCount}>(10)</Text>
-                </View>
-                <Text style={styles.seller}>Dorothy Perkins</Text>
-                <Text style={styles.title}>Evening Dress</Text>
-                <View style={styles.priceContainer}>
-                    <Text style={styles.previousPrice}>15$</Text>
-                    <Text style={styles.newPrice}>12$</Text>
-                </View>
+                        <Rating
+                            type='star'
+                            ratingCount={5}
+                            imageSize={16}
+                            readonly
+                            jumpValue={1}
+                            fractions={1}
+                            startingValue={3}
+                            style={styles.rating}
+                        />
+                        <Text style={styles.ratingCount}>(10)</Text>
+                    </View>
+                    <Text style={styles.seller}>Dorothy Perkins</Text>
+                    <Text style={styles.title}>Evening Dress</Text>
+                    <View style={styles.priceContainer}>
+                        <Text style={styles.previousPrice}>15$</Text>
+                        <Text style={styles.newPrice}>12$</Text>
+                    </View>
             </View>
         )
     }
@@ -69,9 +69,9 @@ export default class SaleItemComponent extends Component{
 
 const styles = StyleSheet.create({
     container: {
-        width: 180,
         height: 360,
         borderRadius: 10,
+        width: '48%',
     },
     imageContainer: {
         height: 250,

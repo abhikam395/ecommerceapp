@@ -29,7 +29,14 @@ export default class ShopScreen extends Component{
                     )
                 }, headerRightContainerStyle: {paddingRight: 20}}}>
                 <ShopStack.Screen name="Categories" component={CategoryScreen} />
-                <ShopStack.Screen name="Catelog" component={CatelogScreen} />
+                <ShopStack.Screen 
+                    name="Catelog" 
+                    component={CatelogScreen} 
+                    options={{
+                        headerTitle: "Women's tops", 
+                        headerTintColor: 'black'
+                    }}
+                />
             </ShopStack.Navigator>
         )
     }

@@ -63,9 +63,8 @@ export default class HomeScreen extends Component{
                         ItemSeparatorComponent={
                             () => <View style={{width: 20}}/>
                         }
-                        >
+                    />
 
-                    </FlatList>
                 </View>
                 <View style={styles.newClothsContainer}>
                     <View style={styles.row}>

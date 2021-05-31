@@ -42,25 +42,25 @@ export default class NewItemComponent extends Component{
                     <View style={styles.newTagContainer}>
                         <Text style={styles.newTag}>New</Text>
                     </View>
-                    <View style={styles.ratingContainer}>
-                        <Rating
-                            type='star'
-                            ratingCount={5}
-                            imageSize={16}
-                            readonly
-                            jumpValue={1}
-                            fractions={1}
-                            startingValue={3}
-                            style={styles.rating}
-                        />
-                        <Text style={styles.ratingCount}>(10)</Text>
-                    </View>
-                    <Text style={styles.seller}>Dorothy Perkins</Text>
-                    <Text style={styles.title}>Evening Dress</Text>
-                    <View style={styles.priceContainer}>
-                        <Text style={styles.previousPrice}>15$</Text>
-                        <Text style={styles.newPrice}>12$</Text>
-                    </View>
+                </View>
+                <View style={styles.ratingContainer}>
+                    <Rating
+                        type='star'
+                        ratingCount={5}
+                        imageSize={16}
+                        readonly
+                        jumpValue={1}
+                        fractions={1}
+                        startingValue={3}
+                        style={styles.rating}
+                    />
+                    <Text style={styles.ratingCount}>(10)</Text>
+                </View>
+                <Text style={styles.seller}>Dorothy Perkins</Text>
+                <Text style={styles.title}>Evening Dress</Text>
+                <View style={styles.priceContainer}>
+                    <Text style={styles.previousPrice}>15$</Text>
+                    <Text style={styles.newPrice}>12$</Text>
                 </View>
             </View>
         )
