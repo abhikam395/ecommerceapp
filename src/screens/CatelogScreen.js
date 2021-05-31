@@ -55,14 +55,11 @@ export default class CatelogScreen extends Component{
         }
         this.bottomSheet = createRef();
         this.changeListType = this.changeListType.bind(this);
+        this.navigateToFilterScreen = this.navigateToFilterScreen.bind(this);
         this.toggerBottomSheet = this.toggerBottomSheet.bind(this);
         this.renderChipItem = this.renderChipItem.bind(this);
         this.renderProductItem = this.renderProductItem.bind(this);
         this.renderProductColumnItem = this.renderProductColumnItem.bind(this);
-    }
-
-    componentDidMount(){
-        this.bottomSheet.current.open();
     }
 
     changeListType(){
@@ -72,6 +69,11 @@ export default class CatelogScreen extends Component{
 
     toggerBottomSheet(){
         this.bottomSheet.current.open();
+    }
+
+    navigateToFilterScreen(){
+        let {navigation} = this.props;
+        navigation.navigate('Filers');
     }
 
     renderChipItem({item}){
@@ -108,10 +110,12 @@ export default class CatelogScreen extends Component{
                         keyExtractor={item => item.id}
                     />
                     <View style={styles.optionsRow}>
-                        <View style={styles.filterContainer}>
+                        <TouchableOpacity 
+                            style={styles.filterContainer}
+                            onPress={this.navigateToFilterScreen}>
                             <MaterialIcons name="filter-list" size={24} color="black"/>
                             <Text>Filters</Text>
-                        </View>
+                        </TouchableOpacity>
                         <TouchableOpacity 
                             style={styles.priceContainer} 
                             onPress={this.toggerBottomSheet}>
