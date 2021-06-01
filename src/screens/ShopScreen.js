@@ -5,18 +5,24 @@ import CatelogScreen from './CatelogScreen';
 
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { TouchableOpacity, View } from 'react-native';
-import FilterScreen from './FilterScreen';
 
 const ShopStack = createStackNavigator();
 
-export default function(){
+
+
+export default function({navigation}){
+
+    function onBackPress(){
+        navigation.goBack(null);
+    }
+
     return (
         <ShopStack.Navigator 
-            initialRouteName="Filters" 
+            initialRouteName="Categories"
             screenOptions={{headerTitleStyle: {alignSelf: 'center'}, 
             headerLeft: function(){
                 return (
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => onBackPress()}>
                         <MaterialIcons name="arrow-back-ios" size={18} color="black"/>
                     </TouchableOpacity>
                 )
@@ -30,18 +36,10 @@ export default function(){
             }, headerRightContainerStyle: {paddingRight: 20}}}>
             <ShopStack.Screen name="Categories" component={CategoryScreen} />
             <ShopStack.Screen 
-                name="Catelog" 
+                name="Catalog" 
                 component={CatelogScreen} 
                 options={{
                     headerTitle: "Women's tops", 
-                    headerTintColor: 'black'
-                }}
-            />
-            <ShopStack.Screen 
-                name="Filters" 
-                component={FilterScreen} 
-                options={{
-                    headerTitle: "Filters", 
                     headerTintColor: 'black'
                 }}
             />

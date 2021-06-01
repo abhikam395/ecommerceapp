@@ -29,18 +29,12 @@ export default class WomenCategoryScreen extends Component{
     }
 
     renderItem({item}){
-        return <CategoryItemComponent title={item.title} />;
+        return <CategoryItemComponent title={item.title} {...this.props}/>;
     }
     
     render(){
         return (
             <FlatList style={styles.container}
-                // ListHeaderComponent={() => (
-                //     <View style={styles.salesBanner}>
-                //         <Text style={styles.salesTitle}>SUMMER SALES</Text>
-                //         <Text style={styles.discount}>Up to 50% off</Text>
-                //     </View>
-                // )}
                 ListEmptyComponent={() => (
                     <FlatList
                         data={DATA}

@@ -29,7 +29,7 @@ export default class KidsCategoryScreen extends Component{
     }
 
     renderItem({item}){
-        return <CategoryItemComponent title={item.title} />;
+        return <CategoryItemComponent title={item.title} {...this.props}/>;
     }
     
     render(){

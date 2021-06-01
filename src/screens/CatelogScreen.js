@@ -73,7 +73,7 @@ export default class CatelogScreen extends Component{
 
     navigateToFilterScreen(){
         let {navigation} = this.props;
-        navigation.navigate('Filers');
+        navigation.navigate('Filters');
     }
 
     renderChipItem({item}){
