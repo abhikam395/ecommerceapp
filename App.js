@@ -41,7 +41,7 @@ export default function App() {
         <Stack.Screen 
           name="Review" 
           component={ReviewScreen} 
-          options={{headerShown: true}}
+          options={{headerShown: true, headerTitle: 'Rating and reviews', headerTitleAlign: 'center'}}
         />
       </Stack.Navigator>
     </NavigationContainer>
