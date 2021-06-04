@@ -15,6 +15,7 @@ export default class SaleItemComponent extends Component{
         }
         this.addToFavorite = this.addToFavorite.bind(this);
         this.ratingCompleted = this.ratingCompleted.bind(this);
+        this.navigateToProductScreen = this.navigateToProductScreen.bind(this);
     }
 
     ratingCompleted(rating) {
@@ -25,13 +26,20 @@ export default class SaleItemComponent extends Component{
         let {favorite} = this.state;
         this.setState({favorite: !favorite});
     }
+
+    navigateToProductScreen(){
+        let {navigation} = this.props;
+        navigation.navigate('Product');
+    }
     
     render(){
         let {title} = this.props;
         let {favorite} = this.state;
         let icon = favorite ? 'favorite' : 'favorite-outline'
         return (
-            <View style={styles.container}>
+            <TouchableOpacity 
+                style={styles.container} 
+                onPress={this.navigateToProductScreen}>
                 <View style={styles.imageContainer}>
                     <Image source={{uri: imageUrl}} style={styles.image}/>
                     <TouchableOpacity 
@@ -62,7 +70,7 @@ export default class SaleItemComponent extends Component{
                     <Text style={styles.previousPrice}>15$</Text>
                     <Text style={styles.newPrice}>12$</Text>
                 </View>
-            </View>
+            </TouchableOpacity>
         )
     }
 }

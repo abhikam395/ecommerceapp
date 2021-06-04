@@ -30,11 +30,21 @@ export default class HomeScreen extends Component{
     }
 
     renderSaleItem({item}){
-        return <SaleItemComponent title={item.title}/>;
+        return (
+            <SaleItemComponent 
+                {...this.props} 
+                title={item.title}
+            />
+        )
     }
 
     renderNewItem({item}){
-        return <NewItemComponent title={item.title}/>;
+        return (
+            <NewItemComponent 
+                {...this.props} 
+                title={item.title}
+            />
+        )
     }
 
     render(){

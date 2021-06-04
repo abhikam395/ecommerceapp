@@ -18,7 +18,7 @@ const Tab = createBottomTabNavigator();
 export default function MainScreen(){
     return (
         <Tab.Navigator
-            initialRouteName="Shop"
+            initialRouteName="Home"
             shifting={true}
             activeColor='red'
             screenOptions={({ route }) => ({

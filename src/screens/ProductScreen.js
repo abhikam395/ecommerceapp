@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
-import {FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {FlatList, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {Rating} from 'react-native-ratings';
 import NewItemComponent from './../components/NewItemComponent';
+
+import RBSheet from "react-native-raw-bottom-sheet";
+import { createRef } from 'react';
+import SelectSizeBottomSheet from '../components/SelectSizeBottomSheet';
 
 const imageUrl = 'https://img.freepik.com/free-photo/dark-haired-woman-with-red-lipstick-smiles-leans-stand-with-clothes-holds-package-pink-background_197531-17609.jpg?size=626&ext=jpg';
 
@@ -34,11 +38,18 @@ export default class ProductScreen extends Component{
     constructor(){
         super();
         this.state = {
-            favoriteButtonSelected: false
+            favoriteButtonSelected: false,
+
         }
+        this.bottomSheet = createRef();
         this.onFavoriteSelected = this.onFavoriteSelected.bind(this);
         this.renderImageItem = this.renderImageItem.bind(this);
         this.renderNewProduct = this.renderNewProduct.bind(this);
+        this.showSizeBottomSheet = this.showSizeBottomSheet.bind(this);
+    }
+
+    showSizeBottomSheet(){
+        this.bottomSheet.current.open();
     }
 
     onFavoriteSelected(){
@@ -56,6 +67,19 @@ export default class ProductScreen extends Component{
 
     renderNewProduct(){
         return <NewItemComponent />
+    }
+
+    renderBottomSheet(){
+        return (
+            <RBSheet
+                ref={this.bottomSheet}
+                height={400}
+                openDuration={250}
+                closeOnDragDown
+          >
+            <SelectSizeBottomSheet />
+          </RBSheet>
+        )
     }
 
     render(){
@@ -78,7 +102,8 @@ export default class ProductScreen extends Component{
                             <View style={styles.row}>
                                 <TouchableOpacity
                                     activeOpacity={.5} 
-                                    style={styles.sizeContainer}>
+                                    style={styles.sizeContainer}
+                                    onPress={this.showSizeBottomSheet}>
                                     <Text style={styles.sizeTitle}>Size</Text>
                                     <MaterialIcons 
                                         name="keyboard-arrow-down" 
@@ -167,6 +192,7 @@ export default class ProductScreen extends Component{
                     activeOpacity={.5}>
                     <Text style={styles.addToCartButtonTitle}>ADD TO CART</Text>
                 </TouchableOpacity>
+                {this.renderBottomSheet()}
             </View>
         )
     }

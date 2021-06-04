@@ -87,11 +87,11 @@ export default class CatelogScreen extends Component{
     }
 
     renderProductItem({item}){
-        return <ProductItemComponent title={item.title}/>;
+        return <ProductItemComponent title={item.title} {...this.props}/>;
     }
 
     renderProductColumnItem({item}){
-        return <ProductColumnItemComponent title={item.title}/>
+        return <ProductColumnItemComponent title={item.title} {...this.props}/>
     }
 
     render(){
