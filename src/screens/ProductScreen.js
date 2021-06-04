@@ -64,7 +64,7 @@ export default class ProductScreen extends Component{
             <View style={{flex: 1}}>
                 <FlatList 
                     ListEmptyComponent={
-                        <View style={{paddingBottom: 30}}>
+                        <View style={{paddingBottom: 80}}>
                             <FlatList
                                 data={images}
                                 horizontal
@@ -162,6 +162,11 @@ export default class ProductScreen extends Component{
                         </View>
                     }
                 />
+                <TouchableOpacity 
+                    style={styles.addToCartButton} 
+                    activeOpacity={.5}>
+                    <Text style={styles.addToCartButtonTitle}>ADD TO CART</Text>
+                </TouchableOpacity>
             </View>
         )
     }
@@ -302,5 +307,22 @@ const styles = StyleSheet.create({
     },
     newItemSeparator: {
         width: 13
+    },
+    addToCartButton: {
+        height: 56,
+        width: '90%',
+        alignSelf: 'center',
+        borderRadius: 28,
+        position: 'absolute',
+        backgroundColor: 'red',
+        bottom: 20,
+        elevation: 5,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    addToCartButtonTitle: {
+        color: 'white',
+        fontSize: 15,
+        fontWeight: 'bold'
     }
 })
