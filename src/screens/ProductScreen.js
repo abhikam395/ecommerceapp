@@ -66,7 +66,7 @@ export default class ProductScreen extends Component{
     }
 
     renderNewProduct(){
-        return <NewItemComponent />
+        return <NewItemComponent {...this.props}/>
     }
 
     renderBottomSheet(){

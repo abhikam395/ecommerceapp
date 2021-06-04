@@ -9,6 +9,7 @@ import MainScreen from './src/screens/MainScreen';
 import FilterScreen from './src/screens/FilterScreen';
 import BrandScreen from './src/screens/BrandScreen';
 import ProductScreen from './src/screens/ProductScreen';
+import ReviewScreen from './src/screens/ReviewScreen';
 
 const Stack = createStackNavigator();
 
@@ -16,7 +17,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator 
-        initialRouteName="Main" 
+        initialRouteName="Review" 
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="SignUp" component={SignUpScreen}/>
         <Stack.Screen name="SignIn" component={SignInScreen}/>
@@ -28,15 +29,20 @@ export default function App() {
             options={{headerShown: true, headerTitle: 'Short Dress', headerTitleAlign: 'center'}}
             />
         <Stack.Screen 
-            name="Filters" 
-            component={FilterScreen} 
-            options={{headerShown: true}}
-            />
+          name="Filters" 
+          component={FilterScreen} 
+          options={{headerShown: true}}
+        />
         <Stack.Screen 
-            name="Brand" 
-            component={BrandScreen} 
-            options={{headerShown: true}}
-            />
+          name="Brand" 
+          component={BrandScreen} 
+          options={{headerShown: true}}
+        />
+        <Stack.Screen 
+          name="Review" 
+          component={ReviewScreen} 
+          options={{headerShown: true}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
