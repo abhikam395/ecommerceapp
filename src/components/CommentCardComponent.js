@@ -68,16 +68,18 @@ export default class CommentCardComponent extends Component{
                     <Text style={{fontSize: 15, lineHeight: 20, marginVertical: 10}}>
                         The first thing to keep in mind is that your number one goal is not to give her the impression that you’d like to get into her pants. Your compliment absolutely must be about her clothes - and not about the way she fills them out.
                     </Text>
-                    <FlatList
-                        style={{marginVertical: 10}}
-                        data={IMAGES}
-                        renderItem={this.renderImage}
-                        horizontal
-                        keyExtractor={item => item.id.toString()}
-                        showsHorizontalScrollIndicator={false}
-                        contentContainerStyle={{height: 100}}
-                        ItemSeparatorComponent={() => <View style={{width: 15}}/>}
-                    />
+                    {this.props.withPhotos && (
+                        <FlatList
+                            style={{marginVertical: 10}}
+                            data={IMAGES}
+                            renderItem={this.renderImage}
+                            horizontal
+                            keyExtractor={item => item.id.toString()}
+                            showsHorizontalScrollIndicator={false}
+                            contentContainerStyle={{height: 100}}
+                            ItemSeparatorComponent={() => <View style={{width: 15}}/>}
+                        />
+                    )}
                     <View style={{
                             marginLeft: 'auto', 
                             marginTop: 5, 

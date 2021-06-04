@@ -24,7 +24,7 @@ export default class ReviewScreen extends Component{
     }
 
     renderCommentCard({item}){
-        return <CommentCardComponent />
+        return <CommentCardComponent withPhotos = {this.state.withPhoto}/>
     }
     
     renderRow({size, value}){
