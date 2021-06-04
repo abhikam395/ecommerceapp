@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {Rating} from 'react-native-ratings';
+import NewItemComponent from './../components/NewItemComponent';
 
 const imageUrl = 'https://img.freepik.com/free-photo/dark-haired-woman-with-red-lipstick-smiles-leans-stand-with-clothes-holds-package-pink-background_197531-17609.jpg?size=626&ext=jpg';
 
@@ -12,6 +13,22 @@ const images = [
     {id: 4, url: imageUrl},
 ]
 
+const DATA = [
+    {
+      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+      title: 'First Item',
+    },
+    {
+      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+      title: 'Second Item',
+
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'Third Item',
+    },
+  ];
+
 export default class ProductScreen extends Component{
 
     constructor(){
@@ -21,6 +38,7 @@ export default class ProductScreen extends Component{
         }
         this.onFavoriteSelected = this.onFavoriteSelected.bind(this);
         this.renderImageItem = this.renderImageItem.bind(this);
+        this.renderNewProduct = this.renderNewProduct.bind(this);
     }
 
     onFavoriteSelected(){
@@ -36,95 +54,17 @@ export default class ProductScreen extends Component{
         )
     }
 
+    renderNewProduct(){
+        return <NewItemComponent />
+    }
+
     render(){
         let {favoriteButtonSelected} = this.state;
         return (
-            // <View style={styles.container}>
-            //     <FlatList
-            //         contentContainerStyle={{width: '100%', flex: 1}}
-            //         ListEmptyComponent={
-            //             <View style={styles.content}>
-            //                 <View style={styles.header}>
-            //                     {/* <FlatList
-            //                         data={images}
-            //                         horizontal
-            //                         renderItem={this.renderImageItem}
-            //                         showsHorizontalScrollIndicator={true}
-            //                         contentContainerStyle={{height: 400}}
-            //                         keyExtractor={item => item.id.toString()}
-            //                         style={{height: 400}}
-            //                     ItemSeparatorComponent={() => <View style={styles.imageItemSeparator}/>} /> */}
-            //                 </View>
-            //                 <View style={styles.row}>
-            //         <TouchableOpacity
-            //             activeOpacity={.5} 
-            //             style={styles.sizeContainer}>
-            //             <Text style={styles.sizeTitle}>Size</Text>
-            //             <MaterialIcons 
-            //                 name="keyboard-arrow-down" 
-            //                 style={styles.arrowIcon} 
-            //                 size={20}
-            //             />
-            //         </TouchableOpacity>
-            //         <TouchableOpacity
-            //             activeOpacity={.5}  
-            //             style={styles.colorContainer}>
-            //             <Text style={styles.colorTitle}>Black</Text>
-            //             <MaterialIcons 
-            //                 name="keyboard-arrow-down" 
-            //                 style={styles.arrowIcon} 
-            //                 size={20}
-            //             />
-            //         </TouchableOpacity>
-            //         <TouchableOpacity
-            //             activeOpacity={.5} 
-            //             style={styles.favoriteButton} 
-            //             onPress={this.onFavoriteSelected}>
-            //             <MaterialIcons 
-            //                 name={favoriteButtonSelected ? "favorite" : "favorite-outline" } 
-            //                 size={20}/>
-            //         </TouchableOpacity>
-            //     </View>
-            //     <View style={styles.productInfo}>
-            //         <View style={styles.productNameRow}>
-            //             <Text style={styles.productName}>H&M</Text>
-            //             <Text style={styles.productPrice}>$19.99</Text>
-            //         </View>
-            //         <Text style={styles.productCategory}>Short black dress</Text>
-            //         <Rating
-            //             type='star'
-            //             ratingCount={5}
-            //             imageSize={16}
-            //             readonly
-            //             jumpValue={1}
-            //             startingValue={3}
-            //             style={styles.rating}
-            //             />
-            //         <Text style={styles.productDescription}>A short dress looks pretty, feminine and gorgeous. Whether you are attending parties or going out on a date, you can wear a short dress to look fashionable. In the eighteenth century, loosely fitted short gowns, which were commonly called frocks were worn by women of the upper classes.</Text>
-            //     </View>
-            //     <View style={styles.divider}/>
-            //     <View style={styles.option}>
-            //         <Text style={styles.optionTitle}>Items details</Text>
-            //         <MaterialIcons 
-            //             name="arrow-forward-ios" 
-            //             style={styles.optionIcon} size={16}/>
-            //     </View>
-            //     <View style={styles.divider}/>
-            //     <View style={styles.option}>
-            //         <Text style={styles.optionTitle}>Items details</Text>
-            //         <MaterialIcons 
-            //             name="arrow-forward-ios" 
-            //             style={styles.optionIcon} size={16}/>
-            //     </View>
-            //             </View>
-            //         }>
-
-            //     </FlatList>
-            // </View>
             <View style={{flex: 1}}>
                 <FlatList 
                     ListEmptyComponent={
-                        <View style={{paddingBottom: 100}}>
+                        <View style={{paddingBottom: 30}}>
                             <FlatList
                                 data={images}
                                 horizontal
@@ -205,12 +145,19 @@ export default class ProductScreen extends Component{
                             </View>
                             <View style={styles.divider}/>
                             <View style={styles.newProductsContainer}>
-                                {/* <View style={styles.newProductRow}> */}
-                                    {/* <Text>You can also like this</Text> */}
-                                {/* <View> */}
-                                    
-                                
-
+                                <View style={styles.newProductRow}>
+                                    <Text style={styles.label}>You can also like this</Text>
+                                    <Text style={styles.itemLabel}>{DATA.length} items</Text>
+                                </View>
+                                <FlatList
+                                    style={styles.productList}
+                                    data={DATA}
+                                    horizontal
+                                    showsHorizontalScrollIndicator={false}
+                                    renderItem={this.renderNewProduct}
+                                    keyExtractor={item => item.id}
+                                    ItemSeparatorComponent={() => <View style={styles.newItemSeparator}/>}
+                                />
                             </View>
                         </View>
                     }
@@ -245,7 +192,7 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: 'row',
         marginVertical: 20,
-        paddingHorizontal: 20,
+        paddingHorizontal: 10,
         justifyContent: 'space-between',
         alignItems: 'center'
     },
@@ -295,7 +242,7 @@ const styles = StyleSheet.create({
     },
 
     productInfo: {
-        paddingHorizontal: 20
+        paddingHorizontal: 10
     },
     productNameRow: {
         flexDirection: 'row'
@@ -327,7 +274,7 @@ const styles = StyleSheet.create({
     option: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingHorizontal: 20
+        paddingHorizontal: 10
     },
     optionTitle: {
         fontSize: 16
@@ -336,9 +283,24 @@ const styles = StyleSheet.create({
         marginLeft: 'auto'
     },
     newProductRow: {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    itemLabel: {
+        marginLeft: 'auto',
+        fontSize: 12
     },
     newProductsContainer: {
-
+        padding: 15
+    },
+    label: {
+        fontSize: 18,
+        color: 'black'
+    },
+    productList: {
+        marginVertical: 15
+    },
+    newItemSeparator: {
+        width: 13
     }
 })
