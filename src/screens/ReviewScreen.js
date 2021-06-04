@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
-import { View, Text, FlatList, StyleSheet, TouchableOpacity, } from 'react-native';
-import { AirbnbRating } from 'react-native-ratings';
+import { View, Text, FlatList, StyleSheet, TouchableOpacity, TextInput, } from 'react-native';
+import { AirbnbRating, Rating } from 'react-native-ratings';
 import CheckBox from 'react-native-check-box';
 import CommentCardComponent from '../components/CommentCardComponent';
 import Octicons from 'react-native-vector-icons/Octicons';
+import { createRef } from 'react';
+import ClientReviewBottomSheet from '../components/ClientReviewBottomSheet';
 
 const COMMENTS = [
     {id: 1},
@@ -20,7 +22,13 @@ export default class ReviewScreen extends Component{
         this.state = {
             withPhoto: false
         }
+        this.bottomSheetRef = createRef();
         this.renderCommentCard = this.renderCommentCard.bind(this);
+        this.onWriteButtonClick = this.onWriteButtonClick.bind(this);
+    }
+
+    onWriteButtonClick(){
+        this.bottomSheetRef.current.open();
     }
 
     renderCommentCard({item}){
@@ -111,10 +119,12 @@ export default class ReviewScreen extends Component{
                         flexDirection: 'row',
                         elevation: 10
                     }}
-                    activeOpacity={0.5}>
+                    activeOpacity={0.5}
+                    onPress={this.onWriteButtonClick}>
                     <Octicons name="pencil" color="white" size={20}/>
                     <Text style={{color: 'white', fontWeight: 'bold', marginHorizontal: 10}}>Write a review</Text>
                 </TouchableOpacity>
+                <ClientReviewBottomSheet ref={this.bottomSheetRef}/>
             </View>
         )
     }
