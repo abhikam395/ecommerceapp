@@ -18,6 +18,7 @@ import { TouchableOpacity } from 'react-native';
 const Tab = createBottomTabNavigator();
 
 const FavoriteStack = createStackNavigator();
+const BagStack = createStackNavigator();
 
 function FavoriteStackScreen(){
     return (
@@ -40,10 +41,31 @@ function FavoriteStackScreen(){
     )
 }
 
+function BagStackScreen(){
+    return (
+        <BagStack.Navigator>
+            <BagStack.Screen 
+                name="My Bag"
+                component={BagScreen}
+                options={{
+                    headerTitleStyle: {alignSelf: 'center', color: 'black'},
+                    headerRight: function(){
+                        return (
+                            <TouchableOpacity>
+                                <MaterialIcons name="search" size={24} color="black"/>
+                            </TouchableOpacity>
+                        )
+                    }, headerRightContainerStyle: {paddingRight: 20}
+                }}
+            />
+        </BagStack.Navigator>
+    )
+}
+
 export default function MainScreen(){
     return (
         <Tab.Navigator
-            initialRouteName="Favorite"
+            initialRouteName="Bag"
             shifting={true}
             activeColor='red'
             screenOptions={({ route }) => ({
@@ -90,7 +112,7 @@ export default function MainScreen(){
               }}>
             <Tab.Screen name="Home" component={HomeScreen} />
             <Tab.Screen name="Shop" component={ShopScreen} />
-            <Tab.Screen name="Bag" component={BagScreen}/>
+            <Tab.Screen name="Bag" component={BagStackScreen}/>
             <Tab.Screen name="Favorite" component={FavoriteStackScreen}/>
             <Tab.Screen name="Profile" component={ProfileScreen}/>
         </Tab.Navigator>
