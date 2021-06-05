@@ -1,5 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import HomeScreen from './HomeScreen';
 import ShopScreen from './ShopScreen';
@@ -12,13 +13,37 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FeatherIcons from 'react-native-vector-icons/Feather';
 import EntypoIcons from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { TouchableOpacity } from 'react-native';
 
 const Tab = createBottomTabNavigator();
+
+const FavoriteStack = createStackNavigator();
+
+function FavoriteStackScreen(){
+    return (
+        <FavoriteStack.Navigator>
+            <FavoriteStack.Screen 
+                name="Favorite"
+                component={FavoriteScreen}
+                options={{
+                    headerTitleStyle: {alignSelf: 'center'},
+                    headerRight: function(){
+                        return (
+                            <TouchableOpacity>
+                                <MaterialIcons name="search" size={24} color="black"/>
+                            </TouchableOpacity>
+                        )
+                    }, headerRightContainerStyle: {paddingRight: 20}
+                }}
+            />
+        </FavoriteStack.Navigator>
+    )
+}
 
 export default function MainScreen(){
     return (
         <Tab.Navigator
-            initialRouteName="Home"
+            initialRouteName="Favorite"
             shifting={true}
             activeColor='red'
             screenOptions={({ route }) => ({
@@ -66,7 +91,7 @@ export default function MainScreen(){
             <Tab.Screen name="Home" component={HomeScreen} />
             <Tab.Screen name="Shop" component={ShopScreen} />
             <Tab.Screen name="Bag" component={BagScreen}/>
-            <Tab.Screen name="Favorite" component={FavoriteScreen}/>
+            <Tab.Screen name="Favorite" component={FavoriteStackScreen}/>
             <Tab.Screen name="Profile" component={ProfileScreen}/>
         </Tab.Navigator>
     )

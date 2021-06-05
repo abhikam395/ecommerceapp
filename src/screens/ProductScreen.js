@@ -136,15 +136,18 @@ export default class ProductScreen extends Component{
                                     <Text style={styles.productPrice}>$19.99</Text>
                                 </View>
                                 <Text style={styles.productCategory}>Short black dress</Text>
-                                <Rating
-                                    type='star'
-                                    ratingCount={5}
-                                    imageSize={16}
-                                    readonly
-                                    jumpValue={1}
-                                    startingValue={3}
-                                    style={styles.rating}
-                                    />
+                                <TouchableOpacity
+                                    onPress={() => this.props.navigation.navigate('Review')}>
+                                    <Rating
+                                        type='star'
+                                        ratingCount={5}
+                                        imageSize={16}
+                                        readonly
+                                        jumpValue={1}
+                                        startingValue={3}
+                                        style={styles.rating}
+                                        />
+                                </TouchableOpacity>
                                 <Text style={styles.productDescription}>A short dress looks pretty, feminine and gorgeous. Whether you are attending parties or going out on a date, you can wear a short dress to look fashionable. In the eighteenth century, loosely fitted short gowns, which were commonly called frocks were worn by women of the upper classes.</Text>
                             </View>
                             <View style={styles.divider}/>
