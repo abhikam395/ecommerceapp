@@ -19,6 +19,7 @@ const Tab = createBottomTabNavigator();
 
 const FavoriteStack = createStackNavigator();
 const BagStack = createStackNavigator();
+const ProfileStack = createStackNavigator();
 
 function FavoriteStackScreen(){
     return (
@@ -62,10 +63,33 @@ function BagStackScreen(){
     )
 }
 
+
+function ProfileStackScreen(){
+    return (
+        <ProfileStack.Navigator>
+            <ProfileStack.Screen 
+                name="Profile"
+                component={ProfileScreen}
+                options={{
+                    headerTitleStyle: { color: 'black'},
+                    headerRight: function(){
+                        return (
+                            <TouchableOpacity>
+                                <MaterialIcons name="search" size={24} color="black"/>
+                            </TouchableOpacity>
+                        )
+                    }, headerRightContainerStyle: {paddingRight: 20}
+                }}
+            />
+        </ProfileStack.Navigator>
+    )
+}
+
+
 export default function MainScreen(){
     return (
         <Tab.Navigator
-            initialRouteName="Bag"
+            initialRouteName="Profile"
             shifting={true}
             activeColor='red'
             screenOptions={({ route }) => ({
@@ -114,7 +138,7 @@ export default function MainScreen(){
             <Tab.Screen name="Shop" component={ShopScreen} />
             <Tab.Screen name="Bag" component={BagStackScreen}/>
             <Tab.Screen name="Favorite" component={FavoriteStackScreen}/>
-            <Tab.Screen name="Profile" component={ProfileScreen}/>
+            <Tab.Screen name="Profile" component={ProfileStackScreen}/>
         </Tab.Navigator>
     )
 }
