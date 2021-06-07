@@ -1,4 +1,4 @@
-package com.ecommerceapp.generated;
+package com.abhi395.sheath.generated;
 
 import java.util.Arrays;
 import java.util.List;
