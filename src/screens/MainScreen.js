@@ -14,6 +14,7 @@ import FeatherIcons from 'react-native-vector-icons/Feather';
 import EntypoIcons from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { TouchableOpacity } from 'react-native';
+import OrderScreen from './OrderScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -66,11 +67,26 @@ function BagStackScreen(){
 
 function ProfileStackScreen(){
     return (
-        <ProfileStack.Navigator>
+        <ProfileStack.Navigator initialRouteName="Order">
             <ProfileStack.Screen 
                 name="Profile"
                 component={ProfileScreen}
                 options={{
+                    headerTitleStyle: { color: 'black'},
+                    headerRight: function(){
+                        return (
+                            <TouchableOpacity>
+                                <MaterialIcons name="search" size={24} color="black"/>
+                            </TouchableOpacity>
+                        )
+                    }, headerRightContainerStyle: {paddingRight: 20}
+                }}
+            />
+            <ProfileStack.Screen 
+                name="Order"
+                component={OrderScreen}
+                options={{
+                    title: "My Orders",
                     headerTitleStyle: { color: 'black'},
                     headerRight: function(){
                         return (
@@ -89,8 +105,8 @@ function ProfileStackScreen(){
 export default function MainScreen(){
     return (
         <Tab.Navigator
-            initialRouteName="Profile"
-            shifting={true}
+            initialRouteName='Profile'
+            lazy={true}
             activeColor='red'
             screenOptions={({ route }) => ({
                 tabBarIcon: ({ focused, color, size }) => {
