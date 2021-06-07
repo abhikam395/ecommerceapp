@@ -15,6 +15,8 @@ import EntypoIcons from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { TouchableOpacity } from 'react-native';
 import OrderScreen from './OrderScreen';
+import OrderDetails from './OrderDetails';
+import SettingScreen from './SettingScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -64,38 +66,41 @@ function BagStackScreen(){
     )
 }
 
+const profileOptions = {
+    // title: "Order Details",
+    headerTitleAlign: 'center',
+    headerTitleStyle: { color: 'black'},
+    headerRight: function(){
+        return (
+            <TouchableOpacity>
+                <MaterialIcons name="search" size={24} color="black"/>
+            </TouchableOpacity>
+        )
+    }, headerRightContainerStyle: {paddingRight: 20}
+}
 
 function ProfileStackScreen(){
     return (
-        <ProfileStack.Navigator initialRouteName="Order">
+        <ProfileStack.Navigator initialRouteName="Settings">
             <ProfileStack.Screen 
                 name="Profile"
                 component={ProfileScreen}
-                options={{
-                    headerTitleStyle: { color: 'black'},
-                    headerRight: function(){
-                        return (
-                            <TouchableOpacity>
-                                <MaterialIcons name="search" size={24} color="black"/>
-                            </TouchableOpacity>
-                        )
-                    }, headerRightContainerStyle: {paddingRight: 20}
-                }}
+                options={profileOptions}
             />
             <ProfileStack.Screen 
                 name="Order"
                 component={OrderScreen}
-                options={{
-                    title: "My Orders",
-                    headerTitleStyle: { color: 'black'},
-                    headerRight: function(){
-                        return (
-                            <TouchableOpacity>
-                                <MaterialIcons name="search" size={24} color="black"/>
-                            </TouchableOpacity>
-                        )
-                    }, headerRightContainerStyle: {paddingRight: 20}
-                }}
+                options={profileOptions}
+            />
+            <ProfileStack.Screen 
+                name="OrderDetails"
+                component={OrderDetails}
+                options={profileOptions}
+            />
+            <ProfileStack.Screen 
+                name="Settings"
+                component={SettingScreen}
+                options={profileOptions}
             />
         </ProfileStack.Navigator>
     )
