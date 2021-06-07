@@ -19,7 +19,7 @@ export default class OrderDeliveredScreen extends Component{
     }
 
     renderOrderItem({item}){
-        return <OrderItemComponent status="Delivered"/>
+        return <OrderItemComponent status="Delivered" {...this.props}/>
     }
 
     render(){

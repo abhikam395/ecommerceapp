@@ -19,7 +19,7 @@ export default class OrderProcessingScreen extends Component{
     }
 
     renderOrderItem({item}){
-        return <OrderItemComponent status="Processing"/>
+        return <OrderItemComponent status="Delivered" {...this.props}/>
     }
 
     render(){

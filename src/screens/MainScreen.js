@@ -81,14 +81,14 @@ const profileOptions = {
 
 function ProfileStackScreen(){
     return (
-        <ProfileStack.Navigator initialRouteName="Settings">
+        <ProfileStack.Navigator initialRouteName="Profile">
             <ProfileStack.Screen 
                 name="Profile"
                 component={ProfileScreen}
                 options={profileOptions}
             />
             <ProfileStack.Screen 
-                name="Order"
+                name="Orders"
                 component={OrderScreen}
                 options={profileOptions}
             />
@@ -110,8 +110,7 @@ function ProfileStackScreen(){
 export default function MainScreen(){
     return (
         <Tab.Navigator
-            initialRouteName='Profile'
-            lazy={true}
+            initialRouteName='Home'
             activeColor='red'
             screenOptions={({ route }) => ({
                 tabBarIcon: ({ focused, color, size }) => {
@@ -137,12 +136,24 @@ export default function MainScreen(){
                     else if (route.name === 'Favorite') {
                         colorName = focused ? 'red' : 'grey';
                         iconName = focused ? 'favorite' : 'favorite-border';
-                        return <MaterialIcons name={iconName} size={22} color={colorName}/>
+                        return (
+                            <MaterialIcons 
+                                name={iconName} 
+                                size={22} 
+                                color={colorName}
+                            />
+                        )
                     }
                     else if (route.name === 'Profile') {
                         colorName = focused ? 'red' : 'grey';
                         iconName = focused ? 'user' : 'user-o';
-                        return <FontAwesome name={iconName} size={22} color={colorName}/>
+                        return (
+                            <FontAwesome 
+                                name={iconName} 
+                                size={22} 
+                                color={colorName}
+                            />
+                        )
                     }
                 },
             })}
@@ -152,7 +163,7 @@ export default function MainScreen(){
                 style: {
                     height: 57,
                     flexDirection: 'row',
-                    padding: 10
+                    paddingBottom: 5
                 }
               }}>
             <Tab.Screen name="Home" component={HomeScreen} />

@@ -48,6 +48,7 @@ export default class HomeScreen extends Component{
     }
 
     render(){
+        let {navigation} = this.props;
         return (
             <ScrollView style={styles.container}>
                 <StatusBar translucent backgroundColor="transparent" />
@@ -58,7 +59,9 @@ export default class HomeScreen extends Component{
                 <View style={styles.saleContainer}>
                     <View style={styles.row}>
                         <Text style={styles.saleTitle}>Sale</Text>
-                        <TouchableOpacity style={styles.viewAll}>
+                        <TouchableOpacity 
+                            style={styles.viewAll} 
+                            onPress={() => navigation.navigate('Shop', {screen: 'Catalog', title: 'Sale'})}>
                             <Text style={styles.viewAllText}>View All</Text>
                         </TouchableOpacity>
                     </View>
@@ -79,7 +82,9 @@ export default class HomeScreen extends Component{
                 <View style={styles.newClothsContainer}>
                     <View style={styles.row}>
                         <Text style={styles.newClothTitle}>New</Text>
-                        <TouchableOpacity style={styles.viewAll}>
+                        <TouchableOpacity 
+                            style={styles.viewAll} 
+                            onPress={() => navigation.navigate('Shop', {screen: 'Catalog', title: 'New Products'})}>
                             <Text style={styles.viewAllText}>View All</Text>
                         </TouchableOpacity>
                     </View>

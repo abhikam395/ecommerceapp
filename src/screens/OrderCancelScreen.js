@@ -19,7 +19,7 @@ export default class OrderCancelScreen extends Component{
     }
 
     renderOrderItem({item}){
-        return <OrderItemComponent status="Cancel"/>
+        return <OrderItemComponent status="Delivered" {...this.props}/>
     }
 
     render(){

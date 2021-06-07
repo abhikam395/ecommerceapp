@@ -6,6 +6,8 @@ const image = 'https://i.pinimg.com/originals/a1/5f/65/a15f654ef33e4e5bf1883d565
 
 export default class ProfileScreen extends Component{
     render(){
+        let {navigation} = this.props;
+
         return (
             <ScrollView style={styles.container}>
                 <View style={styles.profileContent}>
@@ -18,7 +20,7 @@ export default class ProfileScreen extends Component{
                         <Text style={styles.email}>john@gmail.com</Text>
                     </View>
                 </View>
-                <TouchableOpacity style={styles.item}>
+                <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('Orders')}>
                     <View>
                         <Text style={styles.title}>My orders</Text>
                         <Text style={styles.label}>Already have 12 orders</Text>
@@ -78,7 +80,9 @@ export default class ProfileScreen extends Component{
                     />
                 </TouchableOpacity>
                 <View style={styles.line}/>
-                <TouchableOpacity style={styles.item}>
+                <TouchableOpacity 
+                    style={styles.item} 
+                    onPress={() => navigation.navigate('Settings')}>
                     <View>
                         <Text style={styles.title}>Settings</Text>
                         <Text style={styles.label}>Notifications, password</Text>

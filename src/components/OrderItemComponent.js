@@ -3,7 +3,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default class OrderItemComponent extends Component{
     render(){
-        let {status} = this.props;
+        let {status, navigation} = this.props;
         let orderStatusColor = status == 'Delivered' ? '#4caf50' :
             status == 'Processing' ? '#1e88e5' : 'red';
         orderStatusColor = Object.assign({...styles.orderStatus}, {color: orderStatusColor});
@@ -28,7 +28,7 @@ export default class OrderItemComponent extends Component{
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>
-                    <TouchableOpacity style={styles.detailButton}>
+                    <TouchableOpacity style={styles.detailButton} onPress={() => navigation.navigate('OrderDetails')}>
                         <Text style={styles.detailButtonLabel}>Details</Text>
                     </TouchableOpacity>
                     <Text style={orderStatusColor}>{this.props.status}</Text>

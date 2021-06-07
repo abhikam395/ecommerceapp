@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import SettingNotificationItem from '../components/SettingNotificationItem';
 import DatePicker from 'react-native-date-picker'
+import SettingPasswordBSheet from '../components/SettingPasswordBSheet';
+import { createRef } from 'react';
+import RBSheet from "react-native-raw-bottom-sheet";
+
 
 export default class SettingScreen extends Component{
 
@@ -16,6 +20,12 @@ export default class SettingScreen extends Component{
         this.onDateChange = this.onDateChange.bind(this);
         this.onDateSave = this.onDateSave.bind(this);
         this.onDateCancel = this.onDateCancel.bind(this);
+        this.changePassword = this.changePassword.bind(this);
+        this.bottomSheetRef = createRef();
+    }
+    
+    changePassword(){
+        this.bottomSheetRef.current.open();
     }
 
     showDateDialog(){
@@ -52,7 +62,9 @@ export default class SettingScreen extends Component{
                 <View style={styles.subContainer}>
                     <View style={styles.row}>
                         <Text style={styles.title}>Password</Text>
-                        <TouchableOpacity style={styles.passwordChange}>
+                        <TouchableOpacity 
+                            style={styles.passwordChange} 
+                            onPress={this.changePassword}>
                             <Text style={styles.changeLabel}>Change</Text>
                         </TouchableOpacity>
                     </View>
@@ -92,6 +104,7 @@ export default class SettingScreen extends Component{
                         </View>
                     </View>
                 )}
+                <SettingPasswordBSheet ref={this.bottomSheetRef}/>
             </View>
         )
     }
@@ -111,9 +124,10 @@ const styles = StyleSheet.create({
     inputContainer: {
         height: 66,
         backgroundColor: 'white',
-        elevation: 2,
+        elevation: 1,
         marginVertical: 15,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        width: '100%'
     },
     input: {
         padding: 20
@@ -168,5 +182,5 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginVertical: 20,
         alignSelf: 'center',
-    }
+    },
 })
