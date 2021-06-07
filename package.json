@@ -7,7 +7,6 @@
     "start": "react-native start"
   },
   "dependencies": {
-    "@react-native-community/datetimepicker": "^3.5.2",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/bottom-tabs": "^5.11.11",
     "@react-navigation/material-top-tabs": "^5.3.15",
@@ -21,6 +20,7 @@
     "react-dom": "16.13.1",
     "react-native": "~0.63.4",
     "react-native-check-box": "^2.1.7",
+    "react-native-date-picker": "^3.3.1",
     "react-native-gesture-handler": "~1.10.2",
     "react-native-ratings": "^8.1.0",
     "react-native-raw-bottom-sheet": "^2.2.0",
