@@ -1,184 +1,93 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+
 import SortByBottomSheetComponent from '../components/SortByBottomSheetComponent';
 import { createRef } from 'react/cjs/react.production.min';
-import FavoriteItemComponent from '../components/FavoriteItemComponent';
-import FavoriteColumnItem from '../components/FavoriteColumnItem';
+import FavoriteProductsComponent from '../components/FavoriteProductsComponent';
+import FavoriteHeaderComponent from '../components/FavoriteHeaderComponent';
+import { getFavoriteCategories, getFavoriteProducts } from '../services/favoriteService';
+import { connect } from 'react-redux';
+import { addFavoriteCategories, addFavoriteProducts } from '../../store/actions/favoriteActions';
+import { ORIENTATION } from '../../utils/orientation';
 
-const DATA = [
-    {
-        id: '1',
-        title: 'T-shirts',
-    },
-    {
-        id: '2',
-        title: 'Crop tops',
-    },
-    {
-        id: '3',
-        title: 'Blouses',
-    },
-    {
-        id: '4',
-        title: 'T-shirts',
-    },
-    {
-        id: '5',
-        title: 'Crop tops',
-    },
-    {
-        id: '6',
-        title: 'Blouses',
-    },
-    {
-        id: '7',
-        title: 'T-shirts',
-    },
-    {
-        id: '8',
-        title: 'Crop tops',
-    },
-    {
-        id: '9',
-        title: 'Blouses',
-    },
-  ];
+function mapStateToProps(state){
+    let {favorite} = state;
+    return { 
+        products: favorite.products || [],
+        categories: favorite.categories || [] 
+    }
+}
 
-export default class FavoriteScreen extends Component{
+function mapDispatchToProps(dispatch){
+    return {
+        addProducts: (products) => dispatch(addFavoriteProducts(products)),
+        addCategories: (categories) => dispatch(addFavoriteCategories(categories)),
+    }
+}
+
+class FavoriteScreen extends Component{
 
     constructor(){
         super();
         this.state = {
-            listGrid: false,
+            orientation: ORIENTATION.LIST
         }
-        this.bottomSheet = createRef();
-        this.changeListType = this.changeListType.bind(this);
-        this.navigateToFilterScreen = this.navigateToFilterScreen.bind(this);
-        this.toggerBottomSheet = this.toggerBottomSheet.bind(this);
-        this.renderChipItem = this.renderChipItem.bind(this);
-        this.renderFavoriteItem = this.renderFavoriteItem.bind(this);
-        this.renderFavoriteColumnItem = this.renderFavoriteColumnItem.bind(this);
+        this.bottomSheetRef = createRef();
+        this.toggleLayout = this.toggleLayout.bind(this);
     }
 
-    changeListType(){
-        let {listGrid} = this.state;
-        this.setState({listGrid: !listGrid})
+    componentDidMount(){
+        let {addCategories, addProducts} = this.props;
+        getFavoriteProducts()
+            .then(products => {
+                addProducts(products);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        getFavoriteCategories()
+            .then(categories => {
+                addCategories(categories);
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 
-    toggerBottomSheet(){
-        this.bottomSheet.current.open();
+    toggleLayout(){
+        let {orientation} = this.state;
+        let newOrientation = 
+            orientation == ORIENTATION.LIST ? ORIENTATION.GRID : ORIENTATION.LIST;
+        this.setState({orientation: newOrientation});
     }
-
-    navigateToFilterScreen(){
-        let {navigation} = this.props;
-        navigation.navigate('Filters');
-    }
-
-    renderChipItem({item}){
-        return  (
-            <TouchableOpacity 
-                style={styles.chipItem}
-                activeOpacity={.5}>
-                <Text style={styles.chipTitle}>{item.title}</Text>
-            </TouchableOpacity>
-        )
-    }
-
-    renderFavoriteItem({item}){
-        return <FavoriteItemComponent title={item.title} {...this.props}/>;
-    }
-
-    renderFavoriteColumnItem({item}){
-        return <FavoriteColumnItem title={item.title} {...this.props}/>
-    }
-
+    
     render(){
-        let {listGrid} = this.state;
+        let {orientation} = this.state;
+        let {categories, products, navigation} = this.props;
 
         return (
             <View style={styles.container}>
-                <SortByBottomSheetComponent ref={this.bottomSheet}/>
-                <View style={styles.headerContainer}>
-                    <FlatList
-                        style={styles.chiplist}
-                        horizontal
-                        showsHorizontalScrollIndicator={false}
-                        data={DATA}
-                        renderItem={this.renderChipItem}
-                        keyExtractor={item => item.id}
-                    />
-                    <View style={styles.optionsRow}>
-                        <TouchableOpacity 
-                            style={styles.filterContainer}
-                            onPress={this.navigateToFilterScreen}>
-                            <MaterialIcons name="filter-list" size={24} color="black"/>
-                            <Text>Filters</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity 
-                            style={styles.priceContainer} 
-                            onPress={this.toggerBottomSheet}>
-                            <MaterialIcons name="swap-vert" size={24} color="black"/>
-                            <Text>Price: lowest to high</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            style={styles.listIcon}
-                            onPress={this.changeListType}>
-                            {listGrid && (
-                                <MaterialIcons 
-                                    name="view-list" 
-                                    size={24} 
-                                    color="black" 
-                                />
-                            )}
-                            {!listGrid && (
-                                <FontAwesome5 
-                                   name="grip-vertical" 
-                                   size={22} 
-                                   color="black" 
-                               /> 
-                            )}
-                        </TouchableOpacity>
-                    </View>
-                </View>
-                {listGrid && (
-                    <FlatList
-                        data={DATA}
-                        renderItem={this.renderFavoriteItem}
-                        contentContainerStyle={{padding: 10}}
-                        keyExtractor={item => item.id}
-                        showsVerticalScrollIndicator={false}
-                        numColumns={2}
-                        columnWrapperStyle={{justifyContent: 'space-between'}}
-                        ItemSeparatorComponent={
-                            () => <View style={{height: 20}}/>
-                        }
-                    />
-                )}
-                {!listGrid && (
-                    <FlatList
-                        style={{
-                            width: '100%'
-                        }}
-                        data={DATA}
-                        renderItem={this.renderFavoriteColumnItem}
-                        contentContainerStyle={{padding: 10}}
-                        keyExtractor={item => item.id}
-                        ItemSeparatorComponent={
-                            () => <View style={{height: 30}}/>
-                        }
-                    />
-                )}
+                <SortByBottomSheetComponent ref={this.bottomSheetRef}/>
+                <FavoriteHeaderComponent 
+                    categories={categories}
+                    navigation ={navigation}
+                    orientation={orientation}
+                    toggleLayout={this.toggleLayout}
+                    ref={this.bottomSheetRef}/>
+                <FavoriteProductsComponent 
+                    products={products} 
+                    orientation={orientation} />
             </View>
         )
     }
 }
 
+export default connect(mapStateToProps, mapDispatchToProps)(FavoriteScreen);
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center'
+        alignItems: 'center',
     },
     chiplist: {
         flexGrow: 0,

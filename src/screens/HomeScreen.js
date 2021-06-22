@@ -1,4 +1,10 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import { addHomeBanner, addNewProducts, addSaleProducts } from '../../store/actions/homeActions';
+import { LoadingComponent } from '../components/LoadingComponent';
+import NewItemComponent from '../components/NewItemComponent';
+import SaleItemComponent from '../components/SaleItemComponent';
+import { getHomeBanner, getNewProducts, getSaleProducts } from '../services/homeService';
 import { 
     StyleSheet, 
     View, 
@@ -8,14 +14,7 @@ import {
     TouchableOpacity, 
     FlatList, 
     ScrollView,
-    ActivityIndicator
 } from 'react-native';
-import { connect } from 'react-redux';
-import { addHomeBanner, addNewProducts, addSaleProducts } from '../../store/actions/homeActions';
-import { LoadingComponent } from '../components/LoadingComponent';
-import NewItemComponent from '../components/NewItemComponent';
-import SaleItemComponent from '../components/SaleItemComponent';
-import { getHomeBanner, getNewProducts, getSaleProducts } from '../services/homeServices';
 
 function mapStateToProps(state) {
     let {home} = state;
@@ -34,31 +33,25 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-
 class HomeScreen extends Component{
 
     constructor(){
         super();
     }
 
-    async componentDidMount(){
+    componentDidMount(){
         let {addNewProducts, addSaleProducts, addBanner} = this.props;
-        try {
-            getSaleProducts().then(data => {
-                addSaleProducts(data)
-            }).catch((error) => new Error(error))
+        getSaleProducts().then(data => {
+            addSaleProducts(data)
+        }).catch((error) => new Error(error))
 
-            getNewProducts().then(data => {
-                addNewProducts(data)
-            }).catch((error) => new Error(error))
+        getNewProducts().then(data => {
+            addNewProducts(data)
+        }).catch((error) => new Error(error))
 
-            getHomeBanner().then(data => {
-                addBanner(data)
-            }).catch((error) => new Error(error))
-        } catch (error) {
-            console.log("Error occuered")
-        }
-
+        getHomeBanner().then(data => {
+            addBanner(data)
+        }).catch((error) => new Error(error))
     }
 
     renderBanner(){

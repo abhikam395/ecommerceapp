@@ -21,3 +21,42 @@ export const BANNER = {
     title: 'Street Clothes',
     image: imageUrl
 }
+
+export const FAVORITECATEGORIES = [
+  {
+      id: '1',
+      title: 'T-shirts',
+  },
+  {
+      id: '2',
+      title: 'Crop tops',
+  },
+  {
+      id: '3',
+      title: 'Blouses',
+  },
+  {
+      id: '4',
+      title: 'T-shirts',
+  },
+  {
+      id: '5',
+      title: 'Crop tops',
+  },
+  {
+      id: '6',
+      title: 'Blouses',
+  },
+  {
+      id: '7',
+      title: 'T-shirts',
+  },
+  {
+      id: '8',
+      title: 'Crop tops',
+  },
+  {
+      id: '9',
+      title: 'Blouses',
+  },
+];

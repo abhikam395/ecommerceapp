@@ -83,11 +83,10 @@ const styles = StyleSheet.create({
     container: {
         height: 120,
         borderRadius: 10,
-        flex: 1,
         flexDirection: 'row',
         backgroundColor: 'white',
         elevation: 3,
-        marginHorizontal: 10
+        width: '100%'
     },
     imageContainer: {
         width: 120,

@@ -1,6 +1,8 @@
 import { combineReducers } from "redux";
+import favoriteReducer from "./favoriteReducer";
 import homeReducer from "./homeReducer";
 
 export default combineReducers({
-    home: homeReducer
+    home: homeReducer,
+    favorite: favoriteReducer
 })
