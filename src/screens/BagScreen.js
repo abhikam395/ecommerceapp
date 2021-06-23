@@ -7,25 +7,40 @@ import RBSheet from "react-native-raw-bottom-sheet";
 
 import MyBagProductItem from './../components/MyBagProductItem';
 import PromoCodeItem from '../components/PromoCodeItem';
+import { connect } from 'react-redux';
+import { addBagProducts } from '../../store/actions/bagActions';
+import { getBagProducts } from '../services/bagService';
 
-const PRODUCTS = [
-    {id: 1},
-    {id: 2},
-    {id: 3},
-    {id: 4},
-    {id: 5},
-    {id: 6},
-    {id: 7},
-    {id: 8},
-];
+function mapStateToProps(state){
+    let {bag} = state;
+    return {
+        products: bag.products
+    }
+}
 
-export default class BagScreen extends Component{
+function mapDispatchToProps(dispatch){
+    return {
+        addProducts: (products) => dispatch(addBagProducts(products))
+    }
+}
+
+class BagScreen extends Component{
 
     constructor(){
         super();
         this.bottomSheet = createRef();
         this.renderProductItem = this.renderProductItem.bind(this);
         this.openPromoCodeBottomSheet = this.openPromoCodeBottomSheet.bind(this);
+    }
+
+    async componentDidMount(){
+        let {addProducts} = this.props;
+        try {
+            const products = await getBagProducts();
+            addProducts(products);
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     openPromoCodeBottomSheet(){
@@ -39,20 +54,21 @@ export default class BagScreen extends Component{
     }
 
     render(){
+        let {products} = this.props;
         return (
             <View>
                 <FlatList style={styles.container}
                     ListEmptyComponent={
                         <View style={styles.container}>
                             <FlatList
-                                data={PRODUCTS}
+                                data={products}
                                 renderItem={this.renderProductItem}
                                 keyExtractor={item => item.id.toString()}
                                 contentContainerStyle={{padding: 20}}
                                 ItemSeparatorComponent={() => <View style={styles.separator}/>}
                             />
                             <TouchableOpacity 
-                                style={styles.promoCodeContainer}
+                   export default              style={styles.promoCodeContainer}
                                 onPress={this.openPromoCodeBottomSheet}>
                                 <Text style={{textAlignVertical: 'center', paddingLeft: 10}}>Enter your promo code</Text>
                                 <TouchableOpacity style={styles.arrowButton}>
@@ -74,6 +90,8 @@ export default class BagScreen extends Component{
         )
     }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(BagScreen);
 
 const styles = StyleSheet.create({
     container: {

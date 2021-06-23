@@ -10,21 +10,30 @@ function renderSeparator(size) {
     )
 }
 
-function renderItem(orientation, item){
+function renderItem(props){
+    let {item, navigation, orientation} = props;
     if(orientation == ORIENTATION.GRID)
-        return <FavoriteItemComponent title={item.title} />
-    return <FavoriteColumnItem title={item.title} />;
+        return (
+            <FavoriteItemComponent 
+                title={item.title} 
+                navigation={navigation} />
+        )
+    return (
+        <FavoriteColumnItem 
+            title={item.title} 
+            navigation={navigation} />
+    )
 }
 
 export default function FavoriteProductsComponent(props){
-    let {orientation, products} = props;
+    let {orientation, navigation, products} = props;
     if(orientation == ORIENTATION.GRID){
         return (
             <FlatList
                 key={"_"}
                 keyExtractor={item => "_" + item.id}
                 data={products}
-                renderItem={({item}) => renderItem(ORIENTATION.GRID, item)}
+                renderItem={({item}) => renderItem({item: item, navigation: navigation, orientation: orientation})}
                 contentContainerStyle={{padding: 10}}
                 showsVerticalScrollIndicator={false}
                 numColumns={2}
@@ -40,7 +49,7 @@ export default function FavoriteProductsComponent(props){
                 keyExtractor={item => "#" + item.id}
                 data={products}
                 contentContainerStyle={{flex: 1}}
-                renderItem={(item) => renderItem(ORIENTATION.LIST, item)}
+                renderItem={(item) => renderItem({item: item, navigation: navigation, orientation: orientation})}
                 ItemSeparatorComponent={() => renderSeparator(30)}
                 style={{flex: 1, paddingVertical: 20, width: '100%', paddingHorizontal: 10}}
             />

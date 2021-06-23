@@ -8,6 +8,6 @@ export function getFavoriteCategories(){
 
 export function getFavoriteProducts(){
     return new Promise((resolve, reject) => {
-        resolve(DATA);
+        resolve(FAVORITECATEGORIES);
     })
 }

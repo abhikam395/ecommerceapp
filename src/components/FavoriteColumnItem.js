@@ -21,7 +21,7 @@ export default class FavoriteColumnItem extends Component{
 
     ratingCompleted(rating) {
         console.log("Rating is: " + rating)
-      }
+    }
 
     addToFavorite(){
         let {favorite} = this.state;

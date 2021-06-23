@@ -76,7 +76,8 @@ class FavoriteScreen extends Component{
                     ref={this.bottomSheetRef}/>
                 <FavoriteProductsComponent 
                     products={products} 
-                    orientation={orientation} />
+                    orientation={orientation}
+                    navigation={navigation}/>
             </View>
         )
     }
