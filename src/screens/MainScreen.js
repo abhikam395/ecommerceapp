@@ -110,7 +110,7 @@ function ProfileStackScreen(){
 export default function MainScreen(){
     return (
         <Tab.Navigator
-            initialRouteName='Favorite'
+            initialRouteName='Home'
             activeColor='red'
             screenOptions={({ route }) => ({
                 tabBarIcon: ({ focused, color, size }) => {
