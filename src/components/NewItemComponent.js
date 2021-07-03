@@ -43,30 +43,32 @@ export default class NewItemComponent extends Component{
                     <TouchableOpacity 
                         style={styles.favoriteButton} 
                         onPress={this.addToFavorite}>
-                        <MaterialIcons name={icon} size={22} color={favorite ? 'red' : 'grey'}/>
+                        <MaterialIcons name={icon} size={18} color={favorite ? 'red' : 'grey'}/>
                     </TouchableOpacity>
                     <View style={styles.newTagContainer}>
                         <Text style={styles.newTag}>New</Text>
                     </View>
                 </View>
-                <View style={styles.ratingContainer}>
-                    <Rating
-                        type='star'
-                        ratingCount={5}
-                        imageSize={16}
-                        readonly
-                        jumpValue={1}
-                        fractions={1}
-                        startingValue={3}
-                        style={styles.rating}
-                    />
-                    <Text style={styles.ratingCount}>(10)</Text>
-                </View>
-                <Text style={styles.seller}>Dorothy Perkins</Text>
-                <Text style={styles.title}>Evening Dress</Text>
-                <View style={styles.priceContainer}>
-                    <Text style={styles.previousPrice}>15$</Text>
-                    <Text style={styles.newPrice}>12$</Text>
+                <View style={{padding: 10}}>
+                    <View style={styles.ratingContainer}>
+                        <Rating
+                            type='star'
+                            ratingCount={5}
+                            imageSize={16}
+                            readonly
+                            jumpValue={1}
+                            fractions={1}
+                            startingValue={3}
+                            style={styles.rating}
+                        />
+                        <Text style={styles.ratingCount}>(10)</Text>
+                    </View>
+                    <Text style={styles.seller}>Dorothy Perkins</Text>
+                    <Text style={styles.title}>Evening Dress</Text>
+                    <View style={styles.priceContainer}>
+                        <Text style={styles.previousPrice}>15$</Text>
+                        <Text style={styles.newPrice}>12$</Text>
+                    </View>
                 </View>
             </TouchableOpacity>
         )
@@ -76,32 +78,33 @@ export default class NewItemComponent extends Component{
 const styles = StyleSheet.create({
     container: {
         width: 180,
-        height: 360,
         borderRadius: 10,
+        backgroundColor: 'white'
     },
     imageContainer: {
-        height: 250,
+        height: 200,
     },
     image: {
         height: '100%',
-        borderRadius: 10,
+        resizeMode: 'stretch',
     },
     favoriteButton: {
-        height: 46,
-        width: 46,
+        height: 40,
+        width: 40,
         elevation: 5,
         backgroundColor: 'white',
-        borderRadius: 23,
+        borderRadius: 20,
         position: 'absolute',
         bottom: -25,
-        right: 0,
+        right: 10,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        zIndex: 1
     },
     newTagContainer: {
         backgroundColor: 'black',
-        height: 40,
-        width: 60,
+        height: 30,
+        paddingHorizontal: 10,
         borderRadius: 20,
         justifyContent: 'center',
         alignItems: 'center',
@@ -110,8 +113,7 @@ const styles = StyleSheet.create({
     },
     newTag: {
         color: 'white',
-        fontSize: 14,
-        fontWeight: 'bold',
+        fontSize: 11,
         letterSpacing: 1
     },
     ratingContainer: {
@@ -129,23 +131,24 @@ const styles = StyleSheet.create({
         fontSize: 12
     },
     seller: {
-        fontSize: 12
+        fontSize: 11
     },  
     title: {
-        fontSize: 18,
+        fontSize: 15,
         color: 'black',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        marginVertical: 5
     },  
     priceContainer: {
         flexDirection: 'row'
     },
     previousPrice: {
-        fontSize: 16,
+        fontSize: 12,
         textDecorationLine: 'line-through',
         fontWeight: 'bold',
     },
     newPrice: {
-        fontSize: 16,
+        fontSize: 12,
         color: 'red',
         fontWeight: 'bold',
         marginLeft: 5

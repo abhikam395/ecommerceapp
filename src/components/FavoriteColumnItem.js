@@ -66,13 +66,13 @@ export default class FavoriteColumnItem extends Component{
                     </View>
                 </View>
                 <TouchableOpacity style={styles.clearButton}>
-                    <MaterialIcons name="clear" size={26}/>
+                    <MaterialIcons name="clear" size={20}/>
                 </TouchableOpacity>
                 <TouchableOpacity 
                     style={styles.cartButton} 
                     onPress={this.navigateToBagScreen}
                     activeOpacity={.5}>
-                    <MaterialIcons name='shopping-bag' size={20} color='white'/>
+                    <MaterialIcons name='shopping-bag' size={15} color='white'/>
                 </TouchableOpacity>
             </TouchableOpacity>
         )
@@ -93,18 +93,21 @@ const styles = StyleSheet.create({
     },
     image: {
         height: '100%',
-        borderRadius: 10
+        borderTopLeftRadius: 10,
+        borderBottomLeftRadius: 10,
+        resizeMode: 'cover'
     },
     column: {
         flexDirection: 'column',
-        paddingLeft: 15
+        paddingLeft: 15,
+        justifyContent: 'center'
     },
     cartButton: {
-        height: 44,
-        width: 44,
+        height: 36,
+        width: 36,
         elevation: 5,
         backgroundColor: 'red',
-        borderRadius: 22,
+        borderRadius: 18,
         position: 'absolute',
         bottom: -15,
         right: 0,
@@ -146,7 +149,7 @@ const styles = StyleSheet.create({
         fontSize: 12
     },  
     title: {
-        fontSize: 18,
+        fontSize: 16,
         color: 'black',
         fontWeight: 'bold'
     },  
@@ -154,12 +157,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     previousPrice: {
-        fontSize: 16,
+        fontSize: 13,
         textDecorationLine: 'line-through',
         fontWeight: 'bold',
     },
     newPrice: {
-        fontSize: 16,
+        fontSize: 13,
         color: 'red',
         fontWeight: 'bold',
         marginLeft: 5

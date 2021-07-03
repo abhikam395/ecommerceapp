@@ -86,9 +86,10 @@ export default class ProductScreen extends Component{
         let {favoriteButtonSelected} = this.state;
         return (
             <View style={{flex: 1}}>
-                <FlatList 
+                <FlatList
+                    ref={this.mainList}
                     ListEmptyComponent={
-                        <View style={{paddingBottom: 80}}>
+                        <View style={{paddingBottom: 80, backgroundColor: 'white'}}>
                             <FlatList
                                 data={images}
                                 horizontal
@@ -127,7 +128,8 @@ export default class ProductScreen extends Component{
                                     onPress={this.onFavoriteSelected}>
                                     <MaterialIcons 
                                         name={favoriteButtonSelected ? "favorite" : "favorite-outline" } 
-                                        size={20}/>
+                                        size={15}
+                                        color={favoriteButtonSelected? "red" : "grey"}/>
                                 </TouchableOpacity>
                             </View>
                             <View style={styles.productInfo}>
@@ -141,12 +143,13 @@ export default class ProductScreen extends Component{
                                     <Rating
                                         type='star'
                                         ratingCount={5}
-                                        imageSize={16}
+                                        imageSize={14}
                                         readonly
                                         jumpValue={1}
+                                        fractions={1}
                                         startingValue={3}
                                         style={styles.rating}
-                                        />
+                                    />
                                 </TouchableOpacity>
                                 <Text style={styles.productDescription}>A short dress looks pretty, feminine and gorgeous. Whether you are attending parties or going out on a date, you can wear a short dress to look fashionable. In the eighteenth century, loosely fitted short gowns, which were commonly called frocks were worn by women of the upper classes.</Text>
                             </View>
@@ -155,21 +158,21 @@ export default class ProductScreen extends Component{
                                 <Text style={styles.optionTitle}>Items details</Text>
                                 <MaterialIcons 
                                     name="arrow-forward-ios" 
-                                    style={styles.optionIcon} size={16}/>
+                                    style={styles.optionIcon} size={14}/>
                             </View>
                             <View style={styles.divider}/>
                             <View style={styles.option}>
                                 <Text style={styles.optionTitle}>Shipping info</Text>
                                 <MaterialIcons 
                                     name="arrow-forward-ios" 
-                                    style={styles.optionIcon} size={16}/>
+                                    style={styles.optionIcon} size={14}/>
                             </View>
                             <View style={styles.divider}/>
                             <View style={styles.option}>
                                 <Text style={styles.optionTitle}>Support</Text>
                                 <MaterialIcons 
                                     name="arrow-forward-ios" 
-                                    style={styles.optionIcon} size={16}/>
+                                    style={styles.optionIcon} size={14}/>
                             </View>
                             <View style={styles.divider}/>
                             <View style={styles.newProductsContainer}>
@@ -204,10 +207,10 @@ export default class ProductScreen extends Component{
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        width: '100%'
     },
     content: {
         flex: 1,
+        height: '100%'
     },
     header: {
         height: 400,
@@ -236,13 +239,13 @@ const styles = StyleSheet.create({
         width: 140,
         borderWidth: 1,
         borderRadius: 5,
-        borderColor: 'red',
+        borderColor: 'black',
         paddingHorizontal: 10,
         flexDirection: 'row',
         alignItems: 'center',
     },
     sizeTitle: {
-        fontSize: 14,
+        fontSize: 12,
         fontWeight: 'bold',
     },
     arrowIcon: {
@@ -259,7 +262,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     colorTitle: {
-        fontSize: 14,
+        fontSize: 12,
         fontWeight: 'bold',
     },
     favoriteButton: {
@@ -279,22 +282,24 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10
     },
     productNameRow: {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginVertical: 10
     },
     productName: {
-        fontSize: 26,
+        fontSize: 22,
         fontWeight: 'bold',
         color: 'black'
     },
     productPrice: {
-        fontSize: 22,
+        fontSize: 13,
         fontWeight: 'bold',
         color: 'black',
         marginLeft: 'auto'
     },
     rating: {
         alignSelf: 'flex-start',
-        marginVertical: 8,
+        marginVertical: 10,
     },
     productCategory: {
         fontSize: 13
@@ -308,10 +313,12 @@ const styles = StyleSheet.create({
     option: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingHorizontal: 10
+        paddingHorizontal: 10,
+        color: "white",
+        backgroundColor: "white"
     },
     optionTitle: {
-        fontSize: 16
+        fontSize: 14
     },
     optionIcon: {
         marginLeft: 'auto'
@@ -328,7 +335,7 @@ const styles = StyleSheet.create({
         padding: 15
     },
     label: {
-        fontSize: 18,
+        fontSize: 15,
         color: 'black'
     },
     productList: {
@@ -338,10 +345,10 @@ const styles = StyleSheet.create({
         width: 13
     },
     addToCartButton: {
-        height: 56,
+        height: 50,
         width: '90%',
         alignSelf: 'center',
-        borderRadius: 28,
+        borderRadius: 25,
         position: 'absolute',
         backgroundColor: 'red',
         bottom: 20,
@@ -351,7 +358,7 @@ const styles = StyleSheet.create({
     },
     addToCartButtonTitle: {
         color: 'white',
-        fontSize: 15,
+        fontSize: 13,
         fontWeight: 'bold'
     }
 })

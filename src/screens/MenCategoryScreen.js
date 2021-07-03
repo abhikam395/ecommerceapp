@@ -60,19 +60,19 @@ const styles = StyleSheet.create({
         padding: 15
     },
     salesBanner: {
-        height: 120,
+        height: 100,
         backgroundColor: 'red',
         borderRadius: 10,
         alignItems: 'center',
         justifyContent: 'center'
     },
     salesTitle: {
-        fontSize: 22,
+        fontSize: 16,
         fontWeight: 'bold',
         color: 'white',
     },
     discount: {
-        fontSize: 15,
+        fontSize: 12,
         color: 'white'
     }
 })

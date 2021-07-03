@@ -169,7 +169,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'white'
     },
     header: {
         height: 250,
@@ -191,7 +190,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10
     },
     saleTitle: {
-        fontSize: 33,
+        fontSize: 26,
         fontWeight: 'bold',
         color: 'black'
     },
@@ -203,15 +202,14 @@ const styles = StyleSheet.create({
         marginLeft: 'auto',
     },
     viewAllText: {
-        fontSize: 14,
+        fontSize: 12,
         fontWeight: 'bold'
     },
     newClothsContainer: {
-        // paddingVertical: 10,
         paddingHorizontal: 10
     },
     newClothTitle: {
-        fontSize: 33,
+        fontSize: 26,
         fontWeight: 'bold',
         color: 'black'
     },
@@ -223,7 +221,10 @@ const styles = StyleSheet.create({
         marginLeft: 'auto',
     },
     viewAllText: {
-        fontSize: 14,
+        fontSize: 12,
         fontWeight: 'bold'
     },
+    label: {
+        fontSize: 14
+    }
 })

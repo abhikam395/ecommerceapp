@@ -48,16 +48,17 @@ export default class FavoriteItemComponent extends Component{
                         style={styles.cartButton} 
                         onPress={this.navigateToBagScreen}
                         activeOpacity={.5}>
-                        <MaterialIcons name='shopping-bag' size={20} color='white'/>
+                        <MaterialIcons name='shopping-bag' size={15} color='white'/>
                     </TouchableOpacity>
                     <View style={styles.discountContainer}>
                         <Text style={styles.discount}>-20%</Text>
                     </View>
                     <TouchableOpacity style={styles.clearButton}>
-                        <MaterialIcons name="clear" size={30} color="lightgrey"/>
+                        <MaterialIcons name="clear" size={20} color="lightgrey"/>
                     </TouchableOpacity>
                 </View>
-                <View style={styles.ratingContainer}>
+                <View style={{padding: 10}}>
+                    <View style={styles.ratingContainer}>
                         <Rating
                             type='star'
                             ratingCount={5}
@@ -76,6 +77,7 @@ export default class FavoriteItemComponent extends Component{
                         <Text style={styles.previousPrice}>15$</Text>
                         <Text style={styles.newPrice}>12$</Text>
                     </View>
+                </View>
             </TouchableOpacity>
         )
     }
@@ -83,33 +85,36 @@ export default class FavoriteItemComponent extends Component{
 
 const styles = StyleSheet.create({
     container: {
-        height: 360,
         borderRadius: 10,
         width: '48%',
+        backgroundColor: 'white'
     },
     imageContainer: {
-        height: 250,
+        height: 200,
+        borderTopLeftRadius: 5,
+        borderTopRightRadius: 5,
     },
     image: {
         height: '100%',
-        borderRadius: 10
+        resizeMode: "stretch"
     },
     cartButton: {
-        height: 44,
-        width: 44,
+        height: 40,
+        width: 40,
         elevation: 5,
         backgroundColor: 'red',
-        borderRadius: 22,
+        borderRadius: 20,
         position: 'absolute',
         bottom: -15,
         right: 0,
         alignItems: 'center',
         justifyContent: 'center',
-        zIndex: 10
+        zIndex: 10,
+        marginRight: 10
     },
     discountContainer: {
         backgroundColor: 'red',
-        height: 30,
+        height: 26,
         width: 50,
         borderRadius: 20,
         justifyContent: 'center',
@@ -119,9 +124,8 @@ const styles = StyleSheet.create({
     },
     discount: {
         color: 'white',
-        fontSize: 12,
+        fontSize: 10,
         fontWeight: 'bold',
-        letterSpacing: 2
     },
     ratingContainer: {
         alignSelf: 'flex-start',
@@ -141,20 +145,21 @@ const styles = StyleSheet.create({
         fontSize: 12
     },  
     title: {
-        fontSize: 18,
+        fontSize: 15,
         color: 'black',
         fontWeight: 'bold'
     },  
     priceContainer: {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        marginTop: 10
     },
     previousPrice: {
-        fontSize: 16,
+        fontSize: 13,
         textDecorationLine: 'line-through',
         fontWeight: 'bold',
     },
     newPrice: {
-        fontSize: 16,
+        fontSize: 13,
         color: 'red',
         fontWeight: 'bold',
         marginLeft: 5

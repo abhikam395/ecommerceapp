@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
         padding: 15
     },
     salesBanner: {
-        height: 120,
+        height: 100,
         backgroundColor: 'red',
         borderRadius: 10,
         alignItems: 'center',

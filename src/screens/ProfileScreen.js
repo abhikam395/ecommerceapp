@@ -27,7 +27,7 @@ export default class ProfileScreen extends Component{
                     </View>
                     <MaterialIcons 
                         name="keyboard-arrow-right" 
-                        size={26} 
+                        size={22} 
                         style={styles.icon}
                     />
                 </TouchableOpacity>
@@ -39,7 +39,7 @@ export default class ProfileScreen extends Component{
                     </View>
                     <MaterialIcons 
                         name="keyboard-arrow-right" 
-                        size={26} 
+                        size={22} 
                         style={styles.icon}
                     />
                 </TouchableOpacity>
@@ -51,7 +51,7 @@ export default class ProfileScreen extends Component{
                     </View>
                     <MaterialIcons 
                         name="keyboard-arrow-right" 
-                        size={26} 
+                        size={22} 
                         style={styles.icon}
                     />
                 </TouchableOpacity>
@@ -63,7 +63,7 @@ export default class ProfileScreen extends Component{
                     </View>
                     <MaterialIcons 
                         name="keyboard-arrow-right" 
-                        size={26} 
+                        size={22} 
                         style={styles.icon}
                     />
                 </TouchableOpacity>
@@ -75,7 +75,7 @@ export default class ProfileScreen extends Component{
                     </View>
                     <MaterialIcons 
                         name="keyboard-arrow-right" 
-                        size={26} 
+                        size={22} 
                         style={styles.icon}
                     />
                 </TouchableOpacity>
@@ -89,7 +89,7 @@ export default class ProfileScreen extends Component{
                     </View>
                     <MaterialIcons 
                         name="keyboard-arrow-right" 
-                        size={26} 
+                        size={22} 
                         style={styles.icon}
                     />
                 </TouchableOpacity>
@@ -104,9 +104,8 @@ const styles = StyleSheet.create({
     },
     profileContent: {
         flexDirection: 'row',
-        height: 200,
+        paddingVertical: 40,
         paddingHorizontal: 15,
-        paddingTop: 26
     },
     image: {
         height: 100,
@@ -130,13 +129,13 @@ const styles = StyleSheet.create({
         paddingHorizontal: 15
     },
     title: {
-        fontSize: 17,
+        fontSize: 15,
         fontWeight: 'bold',
         color: 'black'
     },
     label: {
         marginTop: 3,
-        fontSize: 13,
+        fontSize: 11,
         color: '#bdbdbd'
     },
     icon: {

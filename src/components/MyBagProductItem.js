@@ -13,10 +13,10 @@ export default class    MyBagProductItem extends Component{
             price: 30,
             quantity: 1,
             showOptionContainer: false,
+            selectedItemId: -1
         }
         this.increaseQuantity = this.increaseQuantity.bind(this);
         this.decreaseQuantity = this.decreaseQuantity.bind(this);
-        this.showOptions = this.showOptions.bind(this);
         this.optionSelected = this.optionSelected.bind(this);
     }
 
@@ -31,8 +31,9 @@ export default class    MyBagProductItem extends Component{
             this.setState({quantity: quantity - 1});
     }
 
-    showOptions(){
+    showOptions(item){
         this.setState({showOptionContainer: true});
+        console.log(item)
     }
 
     optionSelected(){
@@ -40,35 +41,38 @@ export default class    MyBagProductItem extends Component{
     }
 
     render(){
+        let {navigation} = this.props;
         return (
             <View style={styles.container}>
-                <Image style={styles.image} source={{uri: imageUrl}}/>
+                <TouchableOpacity onPress={() => navigation.navigate('Product')}>
+                    <Image style={styles.image} source={{uri: imageUrl}}/>
+                </TouchableOpacity>
                 <View style={{padding: 10, flex: 1}}>
-                    <TouchableOpacity onPress={this.showOptions} 
+                    <TouchableOpacity onPress={() => this.showOptions(this.props.item)} 
                         style={{
                             position: 'absolute', 
-                            right: 10, 
-                            width: 40, 
-                            height: 40,
-                            padding: 10,
+                            right: 0, 
+                            width: 50, 
+                            height: 50,
                             justifyContent: 'center',
                             alignItems: 'center',
+                            zIndex: 1
                         }}>
                         <Entypo 
                             name="dots-three-vertical" 
-                            size={24} 
+                            size={20} 
                             color="lightgrey"
                         />
                     </TouchableOpacity>
-                    <Text style={{fontSize: 18, color: 'black', fontWeight: 'bold'}}>Pullover</Text>
+                    <Text style={{fontSize: 15, color: 'black', fontWeight: 'bold'}}>Pullover</Text>
                     <View style={{flexDirection: 'row'}}>
                         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                            <Text style={{fontSize: 13}}>Color: </Text>
-                            <Text style={{color: 'black'}}>Black</Text>
+                            <Text style={{fontSize: 11}}>Color: </Text>
+                            <Text style={{color: 'black', fontSize: 12}}>Black</Text>
                         </View>
                         <View style={{flexDirection: 'row', alignItems: 'center', marginLeft: 10}}>
-                            <Text style={{fontSize: 13}}>Size: </Text>
-                            <Text style={{color: 'black'}}>L</Text>
+                            <Text style={{fontSize: 11}}>Size: </Text>
+                            <Text style={{color: 'black', fontSize: 12}}>L</Text>
                         </View>
                     </View>
                     <View style={{flexDirection: 'row', marginTop: 'auto', marginBottom: 5, alignItems: 'center'}}>
@@ -76,33 +80,33 @@ export default class    MyBagProductItem extends Component{
                             <TouchableOpacity 
                                 onPress={this.decreaseQuantity}
                                 style={{
-                                    height: 36, 
-                                    width: 36, 
+                                    height: 30, 
+                                    width: 30, 
                                     elevation: 1,  
-                                    borderRadius: 18, 
+                                    borderRadius: 15, 
                                     justifyContent: 'center', 
                                     alignItems: 'center',
                                     backgroundColor: 'white'
                                 }}>
-                                <AntDesign name="minus" size={20}/>
+                                <AntDesign name="minus" size={15}/>
                             </TouchableOpacity>
                             <Text style={{marginHorizontal: 15}}>{this.state.quantity}</Text>
                             <TouchableOpacity
                                 onPress={this.increaseQuantity} 
                                 style={{
-                                    height: 36, 
-                                    width: 36, 
+                                    height: 30, 
+                                    width: 30, 
                                     elevation: 1,  
-                                    borderRadius: 18, 
+                                    borderRadius: 15, 
                                     justifyContent: 'center', 
                                     alignItems: 'center',
                                     backgroundColor: 'white'
                                 }}>
-                                <AntDesign name="plus" size={20}/>
+                                <AntDesign name="plus" size={15}/>
                             </TouchableOpacity>
                         </View>
                         <Text 
-                            style={{marginLeft: 'auto', fontWeight: 'bold', fontSize: 16}}>
+                            style={{marginLeft: 'auto', color: 'black', fontSize: 13}}>
                             ${this.state.quantity * this.state.price}
                         </Text>
                     </View>

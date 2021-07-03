@@ -22,10 +22,10 @@ export default class CategoryItemComponent extends Component{
                 style={styles.container} 
                 activeOpacity={.5} 
                 onPress={this.navigateToCatalogScreen}>
+                <Image style={styles.image} source={{uri: imageUrl}}/>
                 <View style={styles.leftContainer}>
                     <Text style={styles.title}>{title}</Text>
                 </View>
-                <Image style={styles.image} source={{uri: imageUrl}}/>
             </TouchableOpacity>
         )
     }
@@ -33,27 +33,28 @@ export default class CategoryItemComponent extends Component{
 
 const styles = StyleSheet.create({
     container: {
-        height: 120,
+        height: 100,
         backgroundColor: 'white',
         marginTop: 20,
         borderRadius: 10,
         flexDirection: 'row',
-        elevation: 3,
+        elevation: 1,
     },
     leftContainer: {
         flex: 1,
         justifyContent: 'center',
+        alignItems: 'center'
     },
     title: {
-        fontSize: 18,
+        fontSize: 14,
         fontWeight: 'bold',
         marginLeft: 20,
-        color: 'black'
+        color: 'black',
     },
     image: {
         flex: 1,
         resizeMode: 'stretch',
-        borderTopRightRadius: 20,
-        borderBottomRightRadius: 20
+        borderTopLeftRadius: 20,
+        borderBottomLeftRadius: 20
     }
 })

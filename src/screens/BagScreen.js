@@ -29,7 +29,6 @@ class BagScreen extends Component{
     constructor(){
         super();
         this.bottomSheet = createRef();
-        this.renderProductItem = this.renderProductItem.bind(this);
         this.openPromoCodeBottomSheet = this.openPromoCodeBottomSheet.bind(this);
     }
 
@@ -47,9 +46,9 @@ class BagScreen extends Component{
         this.bottomSheet.current.open()
     }
 
-    renderProductItem(){
+    renderProductItem(item){
         return (
-            <MyBagProductItem />
+            <MyBagProductItem  item={item} {...this.props}/>
         )
     }
 
@@ -62,9 +61,9 @@ class BagScreen extends Component{
                         <View style={styles.container}>
                             <FlatList
                                 data={products}
-                                renderItem={this.renderProductItem}
+                                renderItem={({item}) => this.renderProductItem(item)}
                                 keyExtractor={item => item.id.toString()}
-                                contentContainerStyle={{padding: 20}}
+                                contentContainerStyle={{padding: 10}}
                                 ItemSeparatorComponent={() => <View style={styles.separator}/>}
                             />
                             <TouchableOpacity 
@@ -95,10 +94,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(BagScreen);
 
 const styles = StyleSheet.create({
     container: {
-        padding: 10
+        padding: 5
     },
     separator: {
-        height: 30,
+        height: 20,
     },
     promoCodeContainer: {
         height: 40,
